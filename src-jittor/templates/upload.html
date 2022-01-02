@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本序列识别demo</title>
+    <script type="text/javascript">
+        function imgPreview(fileDom){
+            //判断是否支持FileReader
+            if (window.FileReader) {
+                var reader = new FileReader();
+            } else {
+                alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+            }
+            //获取文件
+            var file = fileDom.files[0];
+            var imageType = /^image\//;
+            //是否是图片
+            if (!imageType.test(file.type)) {
+                alert("请选择图片！");
+                return;
+            }
+            //读取完成
+            reader.onload = function(e) {
+                //获取图片dom
+                var img = document.getElementById("preview");
+                //图片路径设置为读取的图片
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+</head>
+<body>
+    <img id="preview" />
+    <br />
+
+    <form action="http://166.111.71.78:5000/upload" enctype='multipart/form-data' method='POST'>
+        <input type="file" name="file" style="margin-top:20px;" onchange="imgPreview(this)" />
+        <input type="submit" value="上传" class="button-new" style="margin-top:15px;"/>
+    </form>
+</body>
+</html>
