@@ -9,13 +9,17 @@
 
 3.评测
     cd src-jittor && python3 evaluate.py
+
     在config.py 配置checkpoints的文件路径
 
 4.预测
     cd src-jittor
+
     mkdir demo && 将要预测的图片放进demo中
+
     python3 predict demo/*.jpg
-    
+
 5.线上demo
     采用flask框架
+    
     cd src-jittor && python3 FlaskServer.py
